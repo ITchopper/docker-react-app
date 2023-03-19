@@ -12,5 +12,12 @@ before_install:
 script:
   - docker run -e CI=true 1224chopper/docker-react-app npm run test -- --coverage
 
-after_success:
-  - echo "end test1111111"
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react-app"
+  env: "Dockerreactapp-env"
+  bucket_name: "elasticbeanstalk-us-east-2-921466450748"
+  bucket_path: "docker-react-app"
+  on:
+    branch: master
